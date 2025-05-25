@@ -1,0 +1,67 @@
+<mat-dialog-content id="voucher">
+  <h2 mat-dialog-title style="color: black; font-weight: bold">
+    <mat-icon style="margin-right: 15px"> check </mat-icon>
+    TransfeRest
+  </h2>
+
+  <div >
+    <p style="color: rgb(0, 113, 0)">
+      Se ha procesado la transferencia electrónica
+    </p>
+
+    <mat-card
+      appearance="outlined"
+      style="margin-bottom: 16px; text-align: left;"
+    >
+      <mat-card-content style="font-weight: bold;">Referencia</mat-card-content>
+      <mat-card-content style="word-wrap: break-word; white-space: normal;">{{data.referencia}}</mat-card-content>
+    </mat-card>
+
+    <mat-card
+      appearance="outlined"
+      style="margin-bottom: 16px; text-align: left"
+    >
+      <mat-card-content style="font-weight: bold"
+        >beneficiario</mat-card-content
+      >
+      <mat-card-content style="word-wrap: break-word; white-space: normal;">{{data.beneficiario}}</mat-card-content>
+    </mat-card>
+
+    <mat-card
+      appearance="outlined"
+      style="margin-bottom: 16px; text-align: left"
+    >
+      <mat-card-content style="font-weight: bold">Monto</mat-card-content>
+      <mat-card-content style="word-wrap: break-word; white-space: normal;">{{data.monto}}</mat-card-content>
+    </mat-card>
+
+    <mat-card
+      appearance="outlined"
+      style="margin-bottom: 16px; text-align: left"
+    >
+      <mat-card-content style="font-weight: bold"> Fecha</mat-card-content>
+      <mat-card-content style="word-wrap: break-word; white-space: normal;">{{data.fecha}}</mat-card-content>
+    </mat-card>
+
+    
+    
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    style="color: rgb(79, 112, 255); text-align: center"
+    mat-raised-button
+    (click)="printPDF()"
+  >
+    <mat-icon style="text-align: center">print</mat-icon> Imprimir
+  </button>
+
+  <button
+    style="background-color: rgb(106, 106, 255); color: white"
+    mat-button
+    [mat-dialog-close]="false"
+  >
+    Aceptar
+  </button>
+</mat-dialog-actions>

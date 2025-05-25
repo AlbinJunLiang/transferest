@@ -1,0 +1,90 @@
+<mat-dialog-content>
+  <h2 mat-dialog-title style="color: black; font-weight: bold">
+    <mat-icon> person </mat-icon>
+    Login
+  </h2>
+  <form [formGroup]="frmLogin">
+    <mat-form-field
+      style="margin-bottom: -10px; padding-bottom: -10px"
+      appearance="fill"
+      class="custom-field"
+    >
+      <mat-label>Enter your email</mat-label>
+      <input matInput formControlName="email"  (click)="onInputClick()" />
+    </mat-form-field>
+
+    <div class="alert-div" *ngIf="F['email'].touched">
+      @if ((F['email'].errors?.['required'] && F['email'].dirty) ) {
+      <small >El correo es obligatorio</small>
+      } @else if ((F['email'].invalid && F['email'].dirty)) {
+      <small >Formato no válido</small>
+      }
+    </div>
+
+    <mat-form-field
+      appearance="fill"
+      style="margin-bottom: -10px; padding-bottom: -10px"
+    >
+      <mat-label class="password-label">Enter your password</mat-label>
+      <input
+      (click)="onInputClick()"
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+      />
+      <button
+        class="password-button-icon"
+        mat-icon-button
+        matSuffix
+        (click)="toggleVisibility()"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="!hide"
+      >
+        <mat-icon class="password-input-icon">{{
+          hide ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div *ngIf="F['password'].touched">
+      <small *ngIf="F['password'].errors?.['required']" style="color: red;">
+        Debe ingresar la contraseña
+      </small>
+    </div>
+
+    <input type="hidden" formControlName="id" />
+  </form>
+  @if(click === true){
+  <div >
+    <span style="color: red;">{{error}}</span>
+</div>
+  }
+  <div>
+    <button (click)="openRegisterDialog()" class="option register">
+      Registrar
+    </button>
+    <button (click)="openRecoveryDialog()" class="option forgot">
+      ¿Olvidaste la contraseña?
+    </button>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    style="background-color: rgb(11, 11, 152); color: white"
+    mat-raised-button
+    cdkFocusInitial
+    type="submit"
+    (click)="onLogin()"
+  >
+    Enviar
+  </button>
+
+  <button
+    style="background-color: rgb(106, 106, 255); color: white"
+    mat-button
+    [mat-dialog-close]="false"
+  >
+    Cancelar
+  </button>
+</mat-dialog-actions>

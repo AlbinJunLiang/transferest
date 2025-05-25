@@ -1,0 +1,107 @@
+mat-dialog-content {
+  max-width: 450px;
+  max-height: 400px;
+  overflow: auto;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+}
+
+mat-dialog-actions {
+  background-color: #ffffff;
+}
+.mat-mdc-form-field {
+  width: 90%;
+  color: black !important;
+}
+
+h2 {
+  font-size: 24px !important;
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  color: #0b003b !important;
+
+}
+
+mat-icon {
+  font-size: 28px;
+  line-height: 28px;
+  margin-right: 10px;
+}
+
+.password-input-icon {
+  font-size: 22px; /* Adjust the size of the icon */
+  height: auto;
+  width: auto;
+}
+
+mat-form-field {
+  margin-right: 5px;
+}
+.password-button-icon {
+  margin-right: 10px;
+  color: #000000;
+}
+/*
+::ng-deep .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+  background-color: rgb(255, 255, 255);
+}
+
+::ng-deep .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+    background-color: rgb(255, 255, 255);
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    background-color: rgb(255, 255, 255);
+  }*/
+
+::ng-deep .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  background-color: rgb(255, 255, 255) !important;
+  --mdc-filled-text-field-active-indicator-color: rgb(4, 56, 153); // Normal (enabled, focused)
+  --mdc-filled-text-field-hover-active-indicator-color: rgb(0, 83, 218); // Hover
+  --mdc-filled-text-field-focus-active-indicator-color: rgb(5, 182, 217); // Focus
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-floating-label {
+  color: #ffffff !important; // color azul
+  font-size: 14px; // tamaño
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(90deg, #4f4fff, #7ab1ff); // tu degradado
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+input {
+  color: black !important;
+}
+
+.option {
+  background-color: transparent; /* Elimina el fondo */
+  border: none; /* Elimina los bordes */
+  color: #3f00eb; /* Establece el color del texto (ajusta según lo que necesites) */
+  font-size: 16px; /* Ajusta el tamaño de fuente si es necesario */
+  padding: 0; /* Elimina cualquier relleno por defecto */
+  text-align: center; /* Centra el texto (opcional, según preferencia) */
+  cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+  font-size: 12px;
+  margin-right: 12px; /* Espacio entre botones */
+
+}
+
+
+.register:hover{
+    color: #3c7aca; /* Establece el color del texto (ajusta según lo que necesites) */
+
+}
+
+.forgot:hover{
+    color: #5c00e7ca; /* Establece el color del texto (ajusta según lo que necesites) */
+
+}
+
+
+
+
+small{
+ color: red
+}

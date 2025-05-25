@@ -1,0 +1,27 @@
+.info-card {
+  max-width: 90%;
+  margin: 40px auto;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  background-color: #ffffff;
+  color: black;
+}
+
+.info-card {  
+  mat-card-content {
+    p {
+      display: flex;
+      align-items: center;  /* Alinea verticalmente */
+      gap: 8px;            /* Espacio entre texto e icono */
+      line-height: 1.6;
+      
+      mat-icon {
+        color: #2196F3;    /* Color del icono */
+        font-size: 20px;   /* Tamaño del icono */
+        height: 20px;      /* Ajuste de altura */
+        width: 20px;
+      }
+    }
+  }
+}

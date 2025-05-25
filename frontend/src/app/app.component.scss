@@ -1,0 +1,57 @@
+
+.mat-toolbar {
+  background-color: #004278; 
+  color: white;
+  
+}
+
+
+.mat-sidenav-content {
+    height: calc(100vh - 64px);
+    background-color: rgb(255, 255, 255);
+}
+
+.titulo {
+  margin: 0 auto;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 35px;
+}
+
+
+.mat-sidenav, .mat-sidenav-container {
+  background-color: #065290; 
+  color: white; 
+
+
+}
+
+
+.boton-flotante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boton-flotante:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 400px) {
+  .titulo {
+    font-size: 20px;      
+    font-weight: bold;
+  }
+}

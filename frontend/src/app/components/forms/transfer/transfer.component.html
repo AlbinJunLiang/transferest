@@ -1,0 +1,179 @@
+<mat-dialog-content>
+  <h2 mat-dialog-title style="color: black; font-weight: bold">
+    <mat-icon> currency_exchange </mat-icon>
+    Transferencia
+  </h2>
+  <form [formGroup]="frmTransfer">
+    @if(verificando === false){
+
+    <div
+      style="
+        width: 100%;
+        text-align: left;
+        margin-left: 15px;
+        margin-bottom: 5px;
+      "
+      *ngIf="F['receiver'].touched || F['receiver'].dirty"
+    >
+      <small *ngIf="F['receiver'].errors?.['required']" style="color: red">
+        Campo obligatorio
+      </small>
+
+      <small
+        *ngIf="F['receiver'].errors?.['maxlength'] && !F['receiver'].errors?.['required']"
+        style="color: red"
+      >
+        Número no válido
+      </small>
+
+      <small
+        *ngIf="F['receiver'].errors?.['pattern'] && !F['receiver'].errors?.['required']"
+        style="color: red"
+      >
+        Formato no válido
+      </small>
+    </div>
+
+    <mat-form-field appearance="outline" class="custom-field">
+      <mat-label>Número del beneficiario</mat-label>
+      <input matInput formControlName="receiver" />
+    </mat-form-field>
+
+    <div
+      style="
+        width: 100%;
+        text-align: left;
+        margin-left: 15px;
+        margin-bottom: 5px;
+      "
+      *ngIf="F['amount'].touched || F['amount'].dirty"
+    >
+      <small *ngIf="F['amount'].errors?.['required']" style="color: red">
+        Campo obligatorio
+      </small>
+
+      <small
+        *ngIf="F['amount'].errors?.['maxlength'] && !F['amount'].errors?.['required']"
+        style="color: red"
+      >
+        Saldo no válido
+      </small>
+
+      <small
+        *ngIf="F['amount'].errors?.['pattern'] && !F['amount'].errors?.['required']"
+        style="color: red"
+      >
+        Formato no válido
+      </small>
+    </div>
+
+    <mat-form-field appearance="outline" class="custom-field">
+      <mat-label>Monto</mat-label>
+      <span style="margin-left: 10px; color: rgb(15, 170, 13)" matPrefix
+        >$&nbsp;</span
+      >
+      <input matInput formControlName="amount" />
+    </mat-form-field>
+
+    <div
+      style="
+        width: 100%;
+        text-align: left;
+        margin-left: 15px;
+        margin-bottom: 5px;
+      "
+      *ngIf="F['details'].touched || F['details'].dirty"
+    >
+      <small *ngIf="F['details'].errors?.['maxlength']" style="color: red">
+        Máximo 100 caracteres
+      </small>
+    </div>
+
+    <mat-form-field appearance="outline" class="custom-field">
+      <mat-label>Detalles</mat-label>
+      <input matInput formControlName="details" />
+    </mat-form-field>
+
+    }@else{ @if ( beneficiarioNoRegistrado){ @if(receiverPhoneNumber !==
+    senderPhoneNumber ){
+    <div>
+      <p class="option register">Revise el número al que quiéres enviar</p>
+    </div>
+    <ng-container *ngIf="beneficiary">
+      <mat-card appearance="outlined">
+        <mat-card-content>
+          <div style="font-size: 16px; margin-bottom: 10px">
+            {{ beneficiary }}
+          </div>
+          <div style="font-size: 15px; margin-bottom: 10px">
+            Número:
+            <span
+              style="font-weight: bold; font-size: 15px; margin-left: 5px"
+              >{{ receiverPhoneNumber }}</span
+            >
+          </div>
+          <div>
+            Saldo a enviar:
+            <span style="font-weight: bold; font-size: 15px; margin-left: 5px"
+              >${{ this.frmTransfer.value.amount }}</span
+            >
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+    }@else{
+    <p style="font-size: 20px" class="option register">
+      No puedes transferir al mismo número.
+    </p>
+
+    } }@else{
+    <p style="font-size: 20px" class="option register">
+      El beneficiario no existe.
+    </p>
+
+    } }
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  @if(verificando === false){
+
+  <button
+    [disabled]="frmTransfer.invalid"
+    (click)="onVerifiedNumber()"
+    style="background-color: rgb(11, 11, 152); color: white"
+    mat-raised-button
+    cdkFocusInitial
+    type="submit"
+  >
+    Verificar
+  </button>
+
+  <button
+    style="background-color: rgb(106, 106, 255); color: white"
+    mat-button
+    [mat-dialog-close]="false"
+  >
+    Cancelar
+  </button>
+
+  }@else{
+  <button
+    (click)="transfer()"
+    style="background-color: rgb(11, 11, 152); color: white"
+    mat-raised-button
+    cdkFocusInitial
+    type="submit"
+  >
+    Transferir
+  </button>
+
+  <button
+    (click)="onChangeNumber()"
+    style="background-color: rgb(106, 106, 255); color: white"
+    mat-button
+  >
+    Cambiar número
+  </button>
+  }
+</mat-dialog-actions>

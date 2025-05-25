@@ -1,0 +1,95 @@
+<mat-dialog-content>
+  <h2 mat-dialog-title style="color: black; font-weight: bold">
+    <mat-icon style="font-size: 24px">done_outline</mat-icon>
+    {{ data.dialogTitle }}
+  </h2>
+
+  @if (tiempoRestante !==0) {
+
+  <form [formGroup]="frmVerify">
+    <mat-form-field
+      appearance="outline"
+      class="custom-field"
+      style="margin-bottom: -12px; padding-bottom: -10px; margin-top: 5px"
+    >
+      <mat-label>Código de verificación</mat-label>
+      <input matInput formControlName="verificationCode" (click)="onInputClick()" />
+    </mat-form-field>
+  </form>
+
+  <div class="alert-div" *ngIf="F['verificationCode'].invalid">
+    @if (F['verificationCode'].touched) {
+      <small style="color: orange;">Ingrese el código</small>
+    } @else {
+      @if (F['verificationCode'].errors?.['required']) {
+        <small>Ingrese el código</small>
+      } @else if (F['verificationCode'].errors?.['maxlength']) {
+        <small style="color: red">Máximo 6 caracteres</small>
+      } @else if (F['verificationCode'].errors?.['pattern']) {
+        <small style="color: red">Debe ser numérico</small>
+      }
+    }
+  </div>v>
+
+}
+
+  @if(click === true){
+  <div>
+    <span style="color: red">{{ error }}</span>
+  </div>
+  }
+
+  <div *ngIf="!success">
+    <button
+      (click)="reenviarCodigo()"
+      *ngIf="tiempoRestante === 0"
+      class="option register"
+    >
+      {{ mensaje }}
+    </button>
+
+    <button *ngIf="tiempoRestante > 0" class="option register">
+      El código expira en: {{ tiempoRestante }} segundos
+    </button>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  @if (tiempoRestante>0 || data.ACTION ==='VERIFY_ACCOUNT') {
+
+  <button
+    (click)="
+      data.ACTION === 'RECOVER_ACCOUNT' ? onRecoverAccount() : onVerify()
+    "
+    style="background-color: rgb(11, 11, 152); color: white"
+    mat-raised-button
+    cdkFocusInitial
+    type="submit"
+  >
+    Enviar
+  </button>
+
+  <button
+    style="background-color: rgb(106, 106, 255); color: white"
+    mat-button
+    [mat-dialog-close]="false"
+  >
+    Cancelar
+  </button>
+  }@else{
+  <div style="width: 100%; display: flex; justify-content: center">
+    <button
+      style="background-color: rgb(20, 41, 229); color: white; width: 50%"
+      mat-button
+      [mat-dialog-close]="false"
+    >
+      Cancelar
+    </button>
+  </div>
+
+  }
+
+  <div *ngIf="success">
+    <p>✅ ¡Cuenta verificada exitosamente!</p>
+  </div>
+</mat-dialog-actions>

@@ -1,0 +1,58 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Actividades</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content >
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="details">
+          <th mat-header-cell *matHeaderCellDef>Detalles</th>
+          <td class="ellipsis" [attr.id]="'fecha-' + element.referenceCode" mat-cell *matCellDef="let element">
+            {{ element.details }}
+          </td>
+        </ng-container>
+        
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef> Monto </th>
+          <td mat-cell *matCellDef="let element"
+              [ngClass]="element.senderPhone == sender ? 'negativo' : 'positivo'">
+            {{ element.senderPhone == sender ? '- ' + element.amount : '+ ' + element.amount }}
+          </td>
+        </ng-container>
+        
+
+        <ng-container matColumnDef="Date">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td class="ellipsis" mat-cell *matCellDef="let element">
+            {{ element.transactionDateTime }}
+          </td>
+        </ng-container>
+
+        <tr  mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr (click)="getTransfer(row)" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[1, 5, 8, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+      >
+      </mat-paginator>
+    </div>
+
+    <mat-divider></mat-divider>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button style="color: rgb(79, 112, 255);" (click)="onPrintPDF()" mat-raised-button>
+      <mat-icon>print</mat-icon> Imprimir
+    </button>
+    <button  style="color: rgb(113, 62, 255);" mat-raised-button [routerLink]="'/home'">
+      <mat-icon>close</mat-icon> Cerrar</button>
+  </mat-card-actions>
+
+  <mat-card-footer></mat-card-footer>
+</mat-card>

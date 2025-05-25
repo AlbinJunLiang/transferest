@@ -1,0 +1,72 @@
+mat-card {
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: rgb(233, 233, 233);
+  color: #000;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  width: 100%;
+}
+mat-card-header {
+  height: 44px;
+  display: flex;
+  justify-content: center;
+}
+
+mat-card-actions {
+  justify-content: flex-end;
+  height: 64px;
+  > button {
+    margin-right: 15px;
+  }
+}
+
+
+tr[mat-header-row]{
+  background-color: rgb(24, 23, 23);
+  color: #ffffff;
+}
+
+tr[mat-row] {
+  background: whitesmoke;
+  color: #000;
+}
+
+
+
+tr[mat-row]:hover {
+  background-color: rgb(238, 238, 238);
+  color: #000;
+}
+
+mat-form-field {
+  margin-right: 5px;
+}
+
+mat-paginator {
+  background-color: #272727;
+}
+
+
+
+@media (max-width: 400px) {
+  .ellipsis {
+    white-space: nowrap;        /* Evita que el texto haga salto de línea */
+    overflow: hidden;           /* Oculta el texto que se desborda */
+    text-overflow: ellipsis;    /* Muestra los puntos suspensivos cuando se desborda */
+    max-width: 20px;           /* Límite de ancho para que se apliquen los puntos suspensivos */
+  }
+
+
+  
+}
+
+.positivo {
+  font-weight: bold;
+  color: rgb(0, 125, 0);
+}
+
+.negativo {
+  font-weight: bold;
+  color: rgb(207, 0, 0);
+}

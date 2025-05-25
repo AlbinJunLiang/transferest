@@ -1,0 +1,63 @@
+<mat-toolbar class="mat-elevation-z3">
+  <button mat-icon-button (click)="collapsed.set(!collapsed())">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span class="titulo">TransfeRest</span>
+
+  @if ((isLogged$ | async)){
+
+  <app-counter-animation
+    (animationFinished)="triggerCounter()"
+  ></app-counter-animation>
+
+  }
+  <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger>
+    <mat-icon>person</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    @if ((isLogged$ | async) === false) {
+    <button mat-menu-item (click)="openLoginDialog()">
+      <mat-icon>login</mat-icon>Iniciar Sesión
+    </button>
+    <button mat-menu-item (click)="openRegisterDialog()">
+      <mat-icon>person</mat-icon>Registrar
+    </button>
+    } @else {
+    <button mat-menu-item (click)="openChangeDialog()">
+      <mat-icon>key</mat-icon>Cambiar contraseña
+    </button>
+
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>Cerrar Sesión
+    </button>
+
+    @if(activeAccount === false){
+    <button mat-menu-item (click)="openVerifyDialog()">
+      <mat-icon>person_check</mat-icon>Verificar
+    </button>
+    } }
+  </mat-menu>
+</mat-toolbar>
+
+@if ((isLogged$ | async)){
+<mat-sidenav-container>
+  <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
+    <app-side-nav [collapsed]="collapsed()"> </app-side-nav>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+    <router-outlet />
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+}@else{
+<app-informacion></app-informacion>
+}
+
+<button class="boton-flotante" (click)="openTransferDialog()">+</button>
+<mat-card-footer></mat-card-footer>
+
+
+

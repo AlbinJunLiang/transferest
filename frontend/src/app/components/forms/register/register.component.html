@@ -1,0 +1,267 @@
+<mat-dialog-content>
+  <h2 mat-dialog-title style="color: black; font-weight: bold">
+    <mat-icon> group </mat-icon>
+    Registrar
+  </h2>
+
+  @if(click === true){
+  <div>
+    <span style="color: red">{{ error }}</span>
+  </div>
+  }
+  <form [formGroup]="frmRegister">
+    <div class="alert-div" *ngIf="F['email'].touched">
+      @if ((F['email'].errors?.['required'] ) ) {
+      <small>El correo es obligatorio</small>
+      } @else if ((F['email'].invalid && F['email'].dirty)) {
+      <small>Formato de correo no válido</small>
+      }
+    </div>
+
+    <mat-form-field
+      appearance="outline"
+      class="custom-field"
+      style="margin-bottom: -12px; padding-bottom: -10px; margin-top: 5px"
+    >
+      <mat-label>Enter your email</mat-label>
+      <input (click)="onInputClick()" matInput formControlName="email" />
+    </mat-form-field>
+
+    <div
+      class="alert-div"
+      style="margin: 3px 15px; display: flex; justify-content: space-between"
+    >
+      <div *ngIf="F['name'].touched" style="width: 46%">
+        <small *ngIf="F['name'].errors?.['required']" style="color: red">
+          Campo obligatorio
+        </small>
+        <small *ngIf="F['name'].errors?.['maxlength']" style="color: red">
+          Máximo 100 caracteres
+        </small>
+      </div>
+      <div *ngIf="F['middleName'].touched" style="width: 45%" class="alert-div">
+        <small *ngIf="F['middleName'].errors?.['maxlength']" style="color: red">
+          Máximo 100 caracteres
+        </small>
+      </div>
+    </div>
+
+    <div
+      style="margin: 3px 15px; display: flex; justify-content: space-between"
+    >
+      <mat-form-field
+        appearance="outline"
+        class="custom-field"
+        style="
+          width: 46%;
+          margin-bottom: -10px;
+          padding-bottom: -10px;
+          margin-top: 5px;
+        "
+      >
+        <mat-label>Name</mat-label>
+        <input (click)="onInputClick()" matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field
+        appearance="outline"
+        class="custom-field"
+        style="
+          width: 46%;
+          margin-bottom: -10px;
+          padding-bottom: -10px;
+          margin-top: 5px;
+        "
+      >
+        <mat-label>Middle name</mat-label>
+        <input (click)="onInputClick()" matInput formControlName="middleName" />
+      </mat-form-field>
+    </div>
+
+    <div
+      *ngIf="F['lastName'].touched"
+      style="display: flex; justify-content: space-between"
+    >
+      <div style="width: 45%; text-align: left; margin-left: 15px">
+        <small *ngIf="F['lastName'].errors?.['required']" style="color: red">
+          Campo obligatorio
+        </small>
+
+        <small *ngIf="F['lastName'].errors?.['maxlength']" style="color: red">
+          Máximo 100 caracteres
+        </small>
+      </div>
+
+      <div
+        *ngIf="F['firstSurname'].touched"
+        style="width: 46%; text-align: left; margin-left: 5px"
+      >
+        <small
+          *ngIf="F['firstSurname'].errors?.['required']"
+          style="color: red"
+        >
+          Campo obligatorio
+        </small>
+      </div>
+    </div>
+
+    <div
+      style="margin: 3px 15px; display: flex; justify-content: space-between"
+    >
+      <mat-form-field
+        appearance="outline"
+        class="custom-field"
+        style="width: 46%; margin-bottom: -10px; padding-bottom: -10px"
+      >
+        <mat-label>Last name</mat-label>
+        <input (click)="onInputClick()" matInput formControlName="lastName" />
+      </mat-form-field>
+
+      <mat-form-field
+        appearance="outline"
+        class="custom-field"
+        style="width: 46%; margin-bottom: -10px; padding-bottom: -10px"
+      >
+        <mat-label>First surname</mat-label>
+        <input
+          (click)="onInputClick()"
+          matInput
+          formControlName="firstSurname"
+        />
+      </mat-form-field>
+    </div>
+
+    <div
+      *ngIf="F['phoneNumber'].touched"
+      style="width: 100%; text-align: left; margin-left: 15px"
+    >
+      <small *ngIf="F['phoneNumber'].errors?.['required']" style="color: red">
+        Ingrese su número de telefono:
+      </small>
+
+      <small *ngIf="F['phoneNumber'].errors?.['maxlength']" style="color: red">
+        Máximo 12 dígitos
+      </small>
+
+      <small *ngIf="F['phoneNumber'].errors?.['pattern']" style="color: red">
+        Debe ser numérico
+      </small>
+    </div>
+
+    <mat-form-field
+      appearance="outline"
+      class="custom-field"
+      style="margin-bottom: -12px; padding-bottom: -5px; margin-top: 5px"
+    >
+      <mat-label>Phone number</mat-label>
+      <input (click)="onInputClick()" matInput formControlName="phoneNumber" />
+    </mat-form-field>
+
+    <div
+      *ngIf="F['password'].touched"
+      style="width: 100%; text-align: left; margin-left: 15px"
+    >
+      <small *ngIf="F['password'].errors?.['required']" style="color: red">
+        Ingrese la contraseña:
+      </small>
+    </div>
+
+    <mat-form-field
+      appearance="outline"
+      class="custom-field"
+      style="margin-bottom: -12px; padding-bottom: -5px; margin-top: 5px"
+    >
+      <mat-label class="password-label">Enter your password</mat-label>
+      <input
+        (click)="onInputClick()"
+        matInput
+        [type]="passwordVisibility.password ? 'password' : 'text'"
+        formControlName="password"
+      />
+      <button
+        class="password-button-icon"
+        mat-icon-button
+        matSuffix
+        (click)="toggleVisibility('password')"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="!passwordVisibility.password"
+      >
+        <mat-icon class="password-input-icon">
+          {{ passwordVisibility.password ? "visibility_off" : "visibility" }}
+        </mat-icon>
+      </button>
+    </mat-form-field>
+    <div
+      *ngIf="F['confirmPassword'].touched"
+      style="width: 100%; text-align: left; margin-left: 15px"
+    >
+      <small
+        *ngIf="F['confirmPassword'].errors?.['required']"
+        style="color: red"
+      >
+        Confirme la contraseña.
+      </small>
+
+      <small
+        *ngIf="!F['confirmPassword'].errors && frmRegister.errors?.['passwordMismatch']"
+        style="color: red"
+      >
+        Las contraseñas no coinciden.
+      </small>
+    </div>
+
+    <mat-form-field
+      appearance="outline"
+      class="custom-field"
+      style="margin-bottom: -12px; padding-bottom: -5px; margin-top: 5px"
+    >
+      <mat-label class="password-label">Confirm password</mat-label>
+      <input
+        (click)="onInputClick()"
+        matInput
+        [type]="passwordVisibility.confirmPassword ? 'password' : 'text'"
+        formControlName="confirmPassword"
+      />
+      <button
+        class="password-button-icon"
+        mat-icon-button
+        matSuffix
+        (click)="toggleVisibility('confirmPassword')"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="!passwordVisibility.confirmPassword"
+      >
+        <mat-icon class="password-input-icon">
+          {{
+            passwordVisibility.confirmPassword ? "visibility_off" : "visibility"
+          }}
+        </mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+
+  <div>
+    <button (click)="openLoginDialog()" class="option register">
+      ¿Ya te encuentras registrado?
+    </button>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    (click)="onRegister()"
+    style="background-color: rgb(11, 11, 152); color: white"
+    mat-raised-button
+    cdkFocusInitial
+    type="submit"
+  >
+    Enviar
+  </button>
+
+  <button
+    style="background-color: rgb(106, 106, 255); color: white"
+    mat-button
+    [mat-dialog-close]="false"
+  >
+    Cancelar
+  </button>
+</mat-dialog-actions>

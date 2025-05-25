@@ -1,0 +1,58 @@
+/* Contenedor principal */
+.counter-container {
+  position: relative; /* Necesario para que el flotante se posicione correctamente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+
+}
+
+/* Texto principal del contador */
+.counter {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+  color: #ffffff;
+
+}
+
+/* Elemento flotante que aparece al cambio */
+.floating-change {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+
+/* Color para valores positivos */
+.floating-change.positive {
+  color: #2ecc71;
+}
+
+/* Color para valores negativos */
+.floating-change.negative {
+  color: #e74c3c;
+}
+
+/* Clase que activa la animación */
+.floating-change.show {
+  animation: flyUp 3s ease-out forwards;
+}
+
+/* Animación para que suba y desaparezca */
+@keyframes flyUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}

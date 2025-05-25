@@ -1,0 +1,34 @@
+<div class="carousel-container">
+  <div class="carousel-slide">
+    <img
+      [src]="images[currentSlideIndex].url"
+      [alt]="images[currentSlideIndex].alt"
+    />
+    <img
+      [src]="images[nextSlideIndex()].url"
+      [alt]="images[nextSlideIndex()].alt"
+      class="fade"
+    />
+
+    <div
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none; /* Permite hacer clic a través del div */
+      "
+    >
+  
+    </div>
+  </div>
+
+  <div class="carousel-nav">
+    <button (click)="prevSlide()">Anterior</button>
+    <button (click)="nextSlide()">Siguiente</button>
+  </div>
+</div>
